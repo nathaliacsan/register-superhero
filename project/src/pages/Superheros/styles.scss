@@ -1,0 +1,50 @@
+@use '../../styles/global.scss';
+
+
+    button {
+        height: 58px;
+        border: 0;
+        background-color: global.$red-700;
+        color: #fff;
+        font-weight: 700;
+        padding: 0 1.25rem;
+        border-radius: 6px;
+        width: 250px;
+        margin-top: 1.5rem;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.9;
+          }
+    }
+
+    .box-heroes {
+        width: 100%;
+        max-width: 1120px;
+        margin: 0 auto; //centralizar
+        padding: 1.5rem; // conteudo nao grudar nas laterais
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+
+        .card-heroes {
+            height: 180px;
+            width: 100%;
+            max-width: 176px;
+            border: 1px solid #d0dce7;
+            color: #fff;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            justify-content: space-around;
+            align-items: center;
+            cursor: pointer;
+            transition: border 0.3s;
+
+            &:hover {
+                border: 5px solid global.$red-500;
+              }
+        }
+    }
+
