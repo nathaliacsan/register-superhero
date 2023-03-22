@@ -8,7 +8,9 @@ export function Home() {
       <button className="home" onClick={() => navigate('/superheros')}>
         Cadastrar super-herói
       </button>
-      <button disabled>Cadastrar categoria</button>
+      <button className="home" disabled>
+        Cadastrar categoria
+      </button>
     </div>
   )
 }
