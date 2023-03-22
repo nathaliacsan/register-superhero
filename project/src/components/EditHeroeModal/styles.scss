@@ -1,0 +1,40 @@
+@use '../../styles/global.scss';
+
+.dialog-overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.dialog-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 32rem;
+    border-radius: 6px;
+    padding: 2.5rem 3rem;
+    background: #202638;
+    border: 1px solid #000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+
+    .title-hero {
+        color: #BABEBA;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .active {
+        color: #626EDA;
+        font-size: 1.2rem;
+    }
+
+    .inactive {
+        color: #EFA53A;
+        font-size: 1.2rem;
+    }
+}

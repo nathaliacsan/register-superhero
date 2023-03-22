@@ -1,14 +1,14 @@
+import { ChangeEvent, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-
-import './styles.scss'
-import { HeroesService } from '../../services/HeroesService'
-import { useState } from 'react'
-
-import { capitalizeFirstLetterAllWords } from '../../utils/textFormatter'
+import * as z from 'zod'
 
 import { Header } from '../../components/Header'
+import { HeroesService } from '../../services/HeroesService'
+import { capitalizeFirstLetterAllWords } from '../../utils/textFormatter'
+
+import './styles.scss'
+
 const newHeroeFormSchema = z.object({
   Name: z.string(),
   Active: z.boolean(),
@@ -34,11 +34,17 @@ export function NewSuperhero() {
     const { Active, CategoryId } = data
     const nameFormatter = capitalizeFirstLetterAllWords(data.Name)
     try {
-      await HeroesService.postNew({ Name: nameFormatter, Active, CategoryId })
+      await HeroesService.post({ Name: nameFormatter, Active, CategoryId })
       setSuccessMessage(true)
     } catch (error) {
       setErrorMessage(true)
     }
+  }
+
+  function handleClearInput(event: ChangeEvent<HTMLInputElement>) {
+    if (successMessage) setSuccessMessage(false)
+
+    if (errorMessage) setErrorMessage(false)
   }
 
   return (
@@ -48,11 +54,17 @@ export function NewSuperhero() {
         className="box-new-heroe"
         onSubmit={handleSubmit(handleCreateNewHeroe)}
       >
-        <input type="text" placeholder="Nome:" {...register('Name')} />
+        <input
+          type="text"
+          placeholder="Nome:"
+          {...register('Name')}
+          onChange={handleClearInput}
+        />
         <input
           type="number"
           placeholder="Id da Categoria:"
           {...register('CategoryId', { valueAsNumber: true })}
+          onChange={handleClearInput}
         />
 
         <Controller

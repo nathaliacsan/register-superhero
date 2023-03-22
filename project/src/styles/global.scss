@@ -37,7 +37,7 @@ body, input, textarea, button {
     height: 100vh;
     margin: 2rem 2rem;
     padding: 0 1.5rem;
-    height: fit-content;
+    min-height: 100vh;
 }
 
 .title {

@@ -13,7 +13,7 @@ const getAll = () => {
   })
 }
 
-const postNew = ({ Name, Active, CategoryId }: IAddNewHeroe) => {
+const post = ({ Name, Active, CategoryId }: IAddNewHeroe) => {
   return Api.post(
     '/Heroes',
     {
@@ -27,7 +27,12 @@ const postNew = ({ Name, Active, CategoryId }: IAddNewHeroe) => {
   )
 }
 
+const deleteHero = (Id: number) => {
+  return Api.delete(`/Heroes/${Id}`, { headers })
+}
+
 export const HeroesService = {
   getAll,
-  postNew,
+  post,
+  deleteHero,
 }
