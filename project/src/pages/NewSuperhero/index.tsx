@@ -4,7 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import './styles.scss'
 import { HeroesService } from '../../services/HeroesService'
+import { useState } from 'react'
 
+import { capitalizeFirstLetterAllWords } from '../../utils/textFormatter'
+
+import { Header } from '../../components/Header'
 const newHeroeFormSchema = z.object({
   Name: z.string(),
   Active: z.boolean(),
@@ -14,6 +18,9 @@ const newHeroeFormSchema = z.object({
 type NewHeroeFormInputs = z.infer<typeof newHeroeFormSchema>
 
 export function NewSuperhero() {
+  const [successMessage, setSuccessMessage] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<boolean>(false)
+
   const {
     control,
     register,
@@ -24,17 +31,19 @@ export function NewSuperhero() {
   })
 
   async function handleCreateNewHeroe(data: NewHeroeFormInputs) {
-    const { Name, Active, CategoryId } = data
+    const { Active, CategoryId } = data
+    const nameFormatter = capitalizeFirstLetterAllWords(data.Name)
     try {
-      await HeroesService.postNew({ Name, Active, CategoryId })
+      await HeroesService.postNew({ Name: nameFormatter, Active, CategoryId })
+      setSuccessMessage(true)
     } catch (error) {
-      console.log(error)
+      setErrorMessage(true)
     }
   }
 
   return (
     <div className="container-base">
-      <h1 className="title">Cadastre um novo super-herói</h1>
+      <Header title="Cadastar super-herói" />
       <form
         className="box-new-heroe"
         onSubmit={handleSubmit(handleCreateNewHeroe)}
@@ -81,6 +90,14 @@ export function NewSuperhero() {
         <button type="submit" disabled={isSubmitting}>
           Cadastrar
         </button>
+        {successMessage && (
+          <p className="success-message">Super-herói cadastrado com sucesso</p>
+        )}
+        {errorMessage && (
+          <p className="error-message">
+            Não foi possível cadastrar super-herói, tente novamente
+          </p>
+        )}
       </form>
     </div>
   )

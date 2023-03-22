@@ -5,7 +5,7 @@ export function Home() {
   const navigate = useNavigate()
   return (
     <div className="container">
-      <button onClick={() => navigate('/superheros')}>
+      <button className="home" onClick={() => navigate('/superheros')}>
         Cadastrar super-herói
       </button>
       <button disabled>Cadastrar categoria</button>

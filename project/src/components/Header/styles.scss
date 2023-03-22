@@ -1,0 +1,9 @@
+.container-header {
+    display: grid;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 50px);
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2rem;
+}

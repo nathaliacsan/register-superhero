@@ -24,7 +24,7 @@ export function HeroesProvider({ children }: HeroesProviderProps) {
 
   useEffect(() => {
     getAllHeroes()
-  }, [])
+  }, [heroes])
 
   return (
     <HeroesContext.Provider value={{ heroes }}>

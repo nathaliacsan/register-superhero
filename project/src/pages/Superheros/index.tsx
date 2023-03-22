@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import './styles.scss'
 
 import { HeroesContext } from '../../contexts/HeroesContext'
+import { Header } from '../../components/Header'
 
 export function Superheros() {
   const navigate = useNavigate()
@@ -13,7 +14,7 @@ export function Superheros() {
 
   return (
     <div className="container-base">
-      <h1 className="title">Super-heróis cadastrados</h1>
+      <Header title="Super-heróis cadastrados" />
 
       <div className="box-heroes">
         {heroes.map((heroe) => {
@@ -24,7 +25,10 @@ export function Superheros() {
           )
         })}
       </div>
-      <button onClick={() => navigate('/superheros/add')}>
+      <button
+        className="button-submit-heroe"
+        onClick={() => navigate('/superheros/add')}
+      >
         Adicionar novo super-herói
       </button>
     </div>
