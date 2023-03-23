@@ -1,4 +1,4 @@
-# superhero-registration
+# Cadastro de super-herói
 
 ## Objetivo
 Cadastrar e deletar super-heróis
