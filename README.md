@@ -17,3 +17,7 @@ Cadastrar e deletar super-heróis
 - cd project
 - npm i
 - npm run dev
+
+## Para visualizar
+
+https://register-superhero.netlify.app/
